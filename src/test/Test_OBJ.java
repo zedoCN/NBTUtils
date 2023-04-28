@@ -21,13 +21,13 @@ public class Test_OBJ {
     public static void main(String[] args) {
         try {
 
-            MCRegion mcRegion = new MCRegion(new File("E:\\MineCraft文件\\1.18.2\\.minecraft\\saves\\OBJ\\region"), 10);
+            MCRegion mcRegion = new MCRegion(new File("D:\\MineCraft\\MinecraftAll\\.minecraft\\versions\\1.19.4-OptiFine_I4\\saves\\新的世界\\region"), 10);
             mcRegion.setGenerateChunk(mcRegion.getChunk(new MCPosInt(0, 0)));
 
-            File objFile = new File("E:\\桌面\\测试模型\\蒙德\\蒙德城1.1\\蒙德城.obj");
+            File objFile = new File("D:\\Projects\\Github\\NBTUtils\\src\\test\\obj\\星穹铁道-主控舱段_by_小海新不恋爱\\星穹铁道-主控舱段_by_小海新不恋爱_细节.obj");
 
 
-            MCBlockColors mcBlockColors = new MCBlockColors(new File("E:\\工程文件\\java\\NBTUtils\\src\\text\\mc"));
+            MCBlockColors mcBlockColors = new MCBlockColors(new File("D:\\Projects\\Github\\NBTUtils\\src\\test\\mc_res\\bloks"));
 
 
             /*//测试画板
@@ -56,7 +56,9 @@ public class Test_OBJ {
                 Obj materialGroup = entry.getValue();
                 System.out.println("材质名:" + materialName);
                 Mtl material = findMtlForName(allMtls, materialName);
-                File materialFile = new File(objFile.getParent() + "\\" + material.getMapKd());
+                String materialPath = material.getMapKd();
+                materialPath = (materialPath == null ? "" : materialPath);
+                File materialFile = new File(objFile.getParent() + "\\" + materialPath.replaceAll("volume://", ""));
                 System.out.println("纹理图片:" + materialFile);
                 System.out.println("面数:" + materialGroup.getNumFaces());
 
@@ -152,14 +154,14 @@ public class Test_OBJ {
                                         }
 
                                     } else {
-                                        color = Color.MAGENTA;
+                                        color = Color.WHITE;
                                     }
 
                                     MCBlockColors.BlockColor blockColor = mcBlockColors.colorFindBlock(color);
 
                                     try {
                                         //System.out.println(MCPosInt.additive(p,new MCPosInt(10240,-50,0)).toStr());
-                                        mcRegion.setBlock(MCPosInt.additive(p, new MCPosInt(10240, -59, 0)), new MCBlock("minecraft:" + blockColor.name));
+                                        mcRegion.setBlock(MCPosInt.additive(p, new MCPosInt(81920, -59, 0)), new MCBlock("minecraft:" + blockColor.name));
                                     } catch (IOException e) {
                                         throw new RuntimeException(e);
                                     }
