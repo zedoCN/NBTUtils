@@ -53,7 +53,7 @@ public class Test_Img2MapArt {
 
     public static void main(String[] args) {
         ArrayList<File> FileList = new ArrayList<>();
-        File[] files = new File("E:\\工程文件\\java\\MCNBT\\src\\text\\mc").listFiles();
+        File[] files = new File("mc_res/bloks").listFiles();
         for (File f : files) {
             if (f.isFile()) {
                 FileList.add(f);
@@ -74,7 +74,7 @@ public class Test_Img2MapArt {
 
         text.lib.ImageFilter img = null;
         try {
-            img = new text.lib.ImageFilter("E:\\工程文件\\java\\MCNBT\\src\\text\\白猫RGB.png");
+            img = new text.lib.ImageFilter("img/WhiteCat.png");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -82,7 +82,7 @@ public class Test_Img2MapArt {
         //img.Zoom(new Dimension(128, 128));
         System.out.println("开始生成");
         try {
-            MCRegion mcRegion = new MCRegion(new File("E:\\MineCraft文件\\1.18.2\\.minecraft\\saves\\测试地图\\region"));
+            MCRegion mcRegion = new MCRegion(new File("D:\\MineCraft\\MinecraftAll\\.minecraft\\versions\\1.19.4-OptiFine_I4\\saves\\新的世界\\region"));
 
 
             MCChunk chunk = mcRegion.getChunk(new MCPosInt(0, 0));

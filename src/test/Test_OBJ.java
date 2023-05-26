@@ -24,7 +24,7 @@ public class Test_OBJ {
             MCRegion mcRegion = new MCRegion(new File("D:\\MineCraft\\MinecraftAll\\.minecraft\\versions\\1.19.4-OptiFine_I4\\saves\\新的世界\\region"), 10);
             mcRegion.setGenerateChunk(mcRegion.getChunk(new MCPosInt(0, 0)));
 
-            File objFile = new File("D:\\Projects\\Github\\NBTUtils\\src\\test\\obj\\星穹铁道-主控舱段_by_小海新不恋爱\\星穹铁道-主控舱段_by_小海新不恋爱_细节.obj");
+            File objFile = new File("D:\\Projects\\Github\\OBJ模型\\星穹铁道-主控舱段_by_小海新不恋爱\\星穹铁道-主控舱段_by_小海新不恋爱_细节.obj");
 
 
             MCBlockColors mcBlockColors = new MCBlockColors(new File("D:\\Projects\\Github\\NBTUtils\\src\\test\\mc_res\\bloks"));
@@ -56,6 +56,7 @@ public class Test_OBJ {
                 Obj materialGroup = entry.getValue();
                 System.out.println("材质名:" + materialName);
                 Mtl material = findMtlForName(allMtls, materialName);
+                FloatTuple kdColor = material.getKd();
                 String materialPath = material.getMapKd();
                 materialPath = (materialPath == null ? "" : materialPath);
                 File materialFile = new File(objFile.getParent() + "\\" + materialPath.replaceAll("volume://", ""));
@@ -154,7 +155,10 @@ public class Test_OBJ {
                                         }
 
                                     } else {
-                                        color = Color.WHITE;
+                                        if (kdColor != null)//使用漫反射颜色
+                                            color = new Color(kdColor.get(0), kdColor.get(1), kdColor.get(2));
+                                        else//没有颜色 设置紫色
+                                            color = Color.MAGENTA;
                                     }
 
                                     MCBlockColors.BlockColor blockColor = mcBlockColors.colorFindBlock(color);
